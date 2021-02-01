@@ -1,0 +1,10 @@
+site_name: OpenAIRE Algorithm Knowledge Base
+site_author: OpenAIRE Mining Team
+theme:
+    name: readthedocs
+    highlightjs: true
+    hljs_languages:
+        - yaml
+        - rust
+nav:
+    - Home: index.md
