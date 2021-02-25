@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="OpenAIRE Mining Team">
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Impact Measures - OpenAIRE Algorithm Knowledge Base</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Impact Measures";
+    var mkdocs_page_input_path = "impact_measures.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/rust.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> OpenAIRE Algorithm Knowledge Base</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Impact Measures</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#citation-count-cc">Citation Count (CC)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#incubation-citation-count-icc">"Incubation" Citation Count (iCC)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pagerank-pr">PageRank (PR)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ram">RAM</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#attrank">AttRank</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../mining_algorithms/">Mining Algorithms</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">OpenAIRE Algorithm Knowledge Base</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Impact Measures</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="introduction">Introduction</h1>
+<h2 id="citation-count-cc">Citation Count (CC)</h2>
+<p>This is the most widely used scientific impact indicator, which sums all citations received by each article. The citation count of a 
+publication <span class="arithmatex">\(i\)</span> corresponds to the in-degree of the corresponding node in the underlying citation network: <span class="arithmatex">\(s_i = \sum_{j} A_{i,j}\)</span>, 
+where <span class="arithmatex">\(A\)</span> is the adjacency matrix of the network (i.e., <span class="arithmatex">\(A_{i,j}=1\)</span> when paper <span class="arithmatex">\(j\)</span> cites paper <span class="arithmatex">\(i\)</span>, while <span class="arithmatex">\(A_{i,j}=0\)</span> otherwise). 
+Citation count can be viewed as a measure of a publication's overall impact, since it conveys the number of other works that directly 
+drew on it.</p>
+<h2 id="incubation-citation-count-icc">"Incubation" Citation Count (iCC)</h2>
+<p>This measure is essentially a time-restricted version of the citation count, where the time window is distinct for each paper, i.e., 
+only citations <span class="arithmatex">\(y\)</span> years after its publication are counted (usually, <span class="arithmatex">\(y=3\)</span>). The ``incubation'' citation count of a paper <span class="arithmatex">\(i\)</span> is 
+calculated as: <span class="arithmatex">\(s_i = \sum_{j,t_j \leq t_i+3} A_{i,j}\)</span>, where <span class="arithmatex">\(A\)</span> is the adjacency matrix and <span class="arithmatex">\(t_j, t_i\)</span> are the citing and cited paper's 
+publication years, respectively. <span class="arithmatex">\(t_i\)</span> is cited paper <span class="arithmatex">\(i\)</span>'s publication year. iCC can be seen as an indicator of a paper's initial momentum 
+(impulse) directly after its publication.</p>
+<h2 id="pagerank-pr">PageRank (PR)</h2>
+<p>Originally developed to rank Web pages, PageRank has been also widely used to rank publications in citation
+networks. In this latter context, a publication's PageRank 
+score also serves as a measure of its influence. In particular, the PageRank score of a publication is calculated 
+as its probability of being read by a researcher that either randomly selects publications to read or selects 
+publications based on the references of her latest read. Formally, the score of a publication <span class="arithmatex">\(i\)</span> is given by: </p>
+<div class="arithmatex">\[
+s_i = \alpha \cdot \sum_{j} P_{i,j} \cdot s_j + (1-\alpha) \cdot \frac{1}{N}
+\]</div>
+<p>where <span class="arithmatex">\(P\)</span> is the stochastic transition matrix, which corresponds to the column normalised version of adjacency 
+matrix <span class="arithmatex">\(A\)</span>, <span class="arithmatex">\(\alpha \in [0,1]\)</span>, and <span class="arithmatex">\(N\)</span> is the number of publications in the citation network. The first addend 
+of the equation corresponds to the selection (with probability <span class="arithmatex">\(\alpha\)</span>) of following a reference, while the 
+second one to the selection of randomly choosing any publication in the network. It should be noted that the 
+score of each publication relies of the score of publications citing it (the algorithm is executed iteratively 
+until all scores converge). As a result, PageRank differentiates citations based on the importance of citing 
+articles, thus alleviating the corresponding issue of the Citation Count.</p>
+<h2 id="ram">RAM</h2>
+<p>RAM is essentially a modified Citation Count, where recent citations are considered of higher importance compared 
+to older ones. Hence, it better captures the popularity of publications. This "time-awareness" of citations 
+alleviates the bias of methods like Citation Count and PageRank against recently published articles, which have 
+not had "enough" time to gather as many citations. The RAM score of each paper <span class="arithmatex">\(i\)</span> is calculated as follows:</p>
+<div class="arithmatex">\[
+s_i = \sum_j{R_{i,j}}
+\]</div>
+<p>where <span class="arithmatex">\(R\)</span> is the so-called Retained Adjacency Matrix (RAM) and <span class="arithmatex">\(R_{i,j}=\gamma^{t_c-t_j}\)</span> when publication <span class="arithmatex">\(j\)</span> cites publication 
+<span class="arithmatex">\(i\)</span>, and <span class="arithmatex">\(R_{i,j}=0\)</span> otherwise. Parameter <span class="arithmatex">\(\gamma \in (0,1)\)</span>, <span class="arithmatex">\(t_c\)</span> corresponds to the current year and <span class="arithmatex">\(t_j\)</span> corresponds to the 
+publication year of citing article <span class="arithmatex">\(j\)</span>.</p>
+<h2 id="attrank">AttRank</h2>
+<p>AttRank is a PageRank variant that alleviates its bias against recent publications (i.e., it is tailored to capture popularity). 
+AttRank achieves this by modifying PageRank's probability of randomly selecting a publication. Instead of using a uniform probability,
+AttRank defines it based on a combination of the publication's age and the citations it received in recent years. The AttRank score 
+of each publication <span class="arithmatex">\(i\)</span> is calculated based on:</p>
+<div class="arithmatex">\[
+s_i = \alpha \cdot \sum_{j} P_{i,j} \cdot s_j
+    + \beta \cdot Att(i)+ \gamma \cdot c \cdot e^{-\rho \cdot (t_c-t_i)}
+\]</div>
+<p>where <span class="arithmatex">\(\alpha + \beta + \gamma =1\)</span> and <span class="arithmatex">\(\alpha,\beta,\gamma \in [0,1]\)</span>. <span class="arithmatex">\(Att(i)\)</span> denotes a recent attention-based score for publication <span class="arithmatex">\(i\)</span>, 
+which reflects its share of citations in the <span class="arithmatex">\(y\)</span> most recent years, <span class="arithmatex">\(t_i\)</span> is the publication year of article <span class="arithmatex">\(i\)</span>, <span class="arithmatex">\(t_c\)</span> denotes the current 
+year, and <span class="arithmatex">\(c\)</span> is a normalisation constant. Finally, <span class="arithmatex">\(P\)</span> is the stochastic transition matrix.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../mining_algorithms/" class="btn btn-neutral float-right" title="Mining Algorithms">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../mining_algorithms/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
